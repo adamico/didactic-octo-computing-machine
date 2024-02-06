@@ -70,5 +70,4 @@ function release_functions.down()
   input.down = false
 end
 
-
 return input

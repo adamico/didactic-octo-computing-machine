@@ -1,6 +1,7 @@
 -- main.lua
 
-local love = require 'love'
+---@diagnostic disable: lowercase-global
+love = require 'love'
 
 local vudu = require 'lib.vudu'
 StateManager = require 'lib.roomy'.new()
@@ -18,7 +19,8 @@ function love.load()
   
   engine:addSystems(
     require('systems.draw_system'),
-    require('systems.physics_system')
+    require('systems.physics_system'),
+    require('systems.animation_system')
   )
 end
 

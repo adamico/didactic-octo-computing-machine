@@ -1,0 +1,22 @@
+ChoiceEngine
+game engine allowing to build a story from interlinked events tha can be modified by multiple choices
+
+- the exoteric goal of the game is to prevent the final event of the story by changing the choices made by the story protagonist
+
+- the esoteric and real goal is to unravel the whole story and the people and factions involved as a whole
+
+- the game loop:
+  1.  Game: present the final event with details concerning the place, the time and the circumstances
+  2.  Player: choose a period in the timeline
+  3.  G: present a list of known decisions made by the story protagonist
+  4.  G: show hints to unknown decisions
+  5.  P: select a decision and modify it
+  6.  P: choose another period (2), decision (5), make guesses about hidden decisions (7) or confirm the choices (10) 
+  7.  G: present a list of possible hidden decisions (which exist in one of the story events even if not at the chosen period)
+  8.  P: search or select an action
+  9.  G: reveal a hidden decision and tell if no more hidden decisions are left (5)
+  10. G: present the final event according to the changed decisions  
+
+
+   
+

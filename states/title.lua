@@ -18,7 +18,7 @@ end
 
 function title:enter(previous, ...)
 	local messageList = {
-		'Game Title',
+		'The Choice Engine',
 		'',
 		'Press Enter to start'
 	}

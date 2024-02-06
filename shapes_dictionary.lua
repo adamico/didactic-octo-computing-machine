@@ -12,6 +12,14 @@ local shapesDict = {
       return physics.newCircleShape(dimensions.radius)
     end
   },
+  triangle = {
+    drawFunction = function (mode, body, shape)
+      return love.graphics.polygon(mode, body:getWorldPoints(shape:getPoints()))
+    end,
+    physicsFunction = function (vertices)
+      return physics.newPolygonShape(vertices)
+    end
+  },
   rectangle = {
     drawFunction = function (mode, body, shape)
       return love.graphics.polygon(mode, body:getWorldPoints(shape:getPoints()))
