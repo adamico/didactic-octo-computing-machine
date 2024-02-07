@@ -16,7 +16,7 @@ function love.load()
   vudu.physics.setWorld(world)
   StateManager:hook()
 	StateManager:enter(require 'states.title')
-  
+
   engine:addSystems(
     require('systems.draw_system'),
     require('systems.physics_system'),

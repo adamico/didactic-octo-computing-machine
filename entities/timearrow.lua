@@ -1,4 +1,5 @@
 -- entities/timearrow.lua
+
 local love = require 'love'
 
 local Concord = require 'lib.concord'
@@ -22,12 +23,11 @@ function Clamp(min, val, max)
   return math.max(min, math.min(val, max));
 end
 
-return function (position, bodyType, shapeType, drawMode, color, dimensions, positionLimits)
+return function (position, bodyType, shapeType, drawMode, color, dimensions, positionLimits, bodyMovingStep)
   local entity = Entity()
 
   local bodyPositionX, bodyPositionY = position.x, position.y
   local side = dimensions.side
-  local bodyMovingStep = 50
 
   local body = physics.newBody(world, bodyPositionX, bodyPositionY, bodyType)
 
@@ -46,21 +46,23 @@ return function (position, bodyType, shapeType, drawMode, color, dimensions, pos
     shapesDict[shapeType].drawFunction(drawMode, body, shape)
   end
 
-  local leftWasPressed, rightWasPressed
+  local leftWasNotPressed, rightWasNotPressed
 
   function entity:update(dt)
     local bodyMovingDirection = 0
     local currentBodyPositionX = body:getX()
 
-    if input.left then
-      leftWasPressed = true
-    elseif input.right then
-      rightWasPressed = true
-    elseif not input.left and leftWasPressed then
-      leftWasPressed = false
+    if not input.left then
+      leftWasNotPressed = true
+    end
+    if not input.right then
+      rightWasNotPressed = true
+    end
+    if input.left and leftWasNotPressed then
+      leftWasNotPressed = false
       bodyMovingDirection = -1
-    elseif not input.right and rightWasPressed then
-      rightWasPressed = false
+    elseif input.right and rightWasNotPressed then
+      rightWasNotPressed = false
       bodyMovingDirection = 1
     end
 
@@ -70,8 +72,8 @@ return function (position, bodyType, shapeType, drawMode, color, dimensions, pos
 
   local animationTimer = 0
   function entity:animate(dt)
-    animationTimer = animationTimer + dt*2
-    local newBodyPositionY = math.floor(bodyPositionY + math.sin(animationTimer*4)*4)
+    animationTimer = animationTimer + dt
+    local newBodyPositionY = math.floor(bodyPositionY + math.sin(animationTimer*8)*4)
     body:setY(newBodyPositionY)
   end
 

@@ -19,4 +19,41 @@ game engine allowing to build a story from interlinked events tha can be modifie
 
 
    
+basic goals:
 
+Game Interface
+- a filled rectangle representing the timeline with parameterized number of squares along the timeline representing dates
+  - for each square add a "!" and or a "???" representing known and unknown events occurring on this date
+  - don't show "???" if no events are known for the date
+  - the last square representing the date on which the final event has occurred is colored differently
+- move a triangular cursor along the timeline stopping at each square
+- show details of the date under the cursor:
+  - known events with the format: "! <time> <event title>>"
+  - unknown events with the format: "???" (one line only even if multiple unknown events exists for this date)
+- when the cursor stops on a date with known events, show a <more info button>
+-when clicking the <more info button>, open a popup rectangle widget containing the following details:
+  - <back to time line button>
+  - <year, month and day>
+  - list of events:
+    - "! <time> <place> <event title>"
+  - line for unknown events: "???"
+  - the cursor can move up and down the list => an <expand button> or a <guess button> is displayed at the end of the line
+  - the cursor can click the <back to time line button>
+  - the cursor can click the <expand button> => a blurb of text is shown with details of the known event
+  - the cursor can click the <guess button>
+    - open the guess window
+- when the cursor stops on a date with no known events show a <guess button>
+- when clicking the <guess button>, open the guess window
+
+Game Editor
+
+Game Data
+- "timeline" table of "dates"
+- "date" table of "events"
+- "event" object:
+  - time property
+  - place property
+  - title property
+  - description property
+  - known property
+  - 
